@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shikanoko Tan Tan – Deshidratadores</title>
+  <style>
+    /* ===== Reset Básico ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial Black', Arial, sans-serif;
+      background-color: #FFF8F0;
+      color: #333333;
+      line-height: 1.4;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ===== Encabezado ===== */
+    header {
+      background: #00695C; /* Verde oscuro */
+      color: #FFFFFF;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* ===== Menú de Navegación ===== */
+    nav {
+      background: #004D40; /* Verde más oscuro */
+      padding: 12px 0;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    nav li {
+      margin: 0 20px;
+    }
+    nav a {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #A7FFEB; /* Verde claro */
+    }
+
+    /* ===== Sección “Hero” ===== */
+    .hero {
+      background: url('https://i.imgur.com/JR9v9ZB.jpg') no-repeat center center/cover;
+      height: 70vh;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #FFFFFF;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 24px;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+    }
+    .hero button {
+      font-size: 1.1rem;
+      background-color: #FF7043; /* Naranja */
+      border: none;
+      padding: 14px 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      color: #FFFFFF;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .hero button:hover {
+      background-color: #FF5722; /* Naranja más oscuro */
+    }
+
+    /* ===== Secciones de Contenido ===== */
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section:nth-of-type(even) {
+      background-color: #F0FFF4; /* Verde muy suave */
+    }
+    .section h2 {
+      font-size: 2.4rem;
+      color: #004D40;
+      margin-bottom: 16px;
+    }
+    .section p {
+      max-width: 800px;
+      margin: 0 auto 24px auto;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555555;
+    }
+
+    /* ===== Producto Destacado ===== */
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .product-card {
+      background-color: #FFFFFF;
+      border: 2px solid #CCCCCC;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      text-align: left;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+    }
+    .product-card img {
+      width: 100%;
+      object-fit: cover;
+    }
+    .product-details {
+      padding: 20px;
+    }
+    .product-details h3 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: #00695C;
+    }
+    .product-details ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: #555555;
+    }
+    .product-details ul li {
+      margin-bottom: 6px;
+    }
+    .product-details .price {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #FF5722;
+      margin-bottom: 16px;
+    }
+    .product-details button {
+      font-size: 1rem;
+      background-color: #004D40;
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .product-details button:hover {
+      background-color: #00332E;
+    }
+
+    /* ===== Testimonios ===== */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background-color: #FFFFFF;
+      border-left: 5px solid #FF7043;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .testimonial-card p {
+      font-size: 1rem;
+      margin-bottom: 16px;
+      color: #444444;
+    }
+    .testimonial-card span {
+      font-weight: bold;
+      color: #00695C;
+    }
+
+    /* ===== Cómo Funciona ===== */
+    .how-it-works {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+      border: 1px solid #CCCCCC;
+      border-radius: 8px;
+      padding: 16px;
+      background-color: #FFFFFF;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .step img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid #004D40;
+    }
+    .step div {
+      flex: 1;
+    }
+    .step div h4 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #00695C;
+    }
+    .step div p {
+      font-size: 0.95rem;
+      color: #555555;
+    }
+
+    /* ===== Pie de página ===== */
+    footer {
+      background-color: #004D40;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+    footer p {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    footer a {
+      color: #A7FFEB;
+      font-weight: bold;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .product-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Shikanoko Tan Tan</h1>
+    <p>Tecnología que conserva lo mejor de la naturaleza</p>
+  </header>
+
+  <!-- Navegación -->
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#como-funciona">Cómo Funciona</a></li>
+      <li><a href="#opiniones">Opiniones</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sección Hero -->
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <h2>¡Convierte lo natural en algo eterno!</h2>
+      <p>Deshidrata frutas, verduras y mucho más con estilo y potencia.</p>
+      <button>¡Cómpralo ahora!</button>
+    </div>
+  </section>
+
+  <!-- Sección ¿Quiénes somos? -->
+  <section class="section" id="quienes-somos">
+    <h2>¿Quiénes somos?</h2>
+    <p>
+      Shikanoko Tan Tan es una empresa de innovación ecológica que combina tecnología japonesa con diseño moderno para crear deshidratadores de alta eficiencia. Nuestra misión es conservar la frescura y nutrientes de tus alimentos, ofreciéndote productos duraderos, de bajo consumo y fáciles de usar.
+    </p>
+    <img src="https://i.imgur.com/2h2c3Su.jpg" alt="Fábrica Shikanoko Tan Tan" style="max-width:600px; margin:20px auto;">
+  </section>
+
+  <!-- Sección Productos Destacados -->
+  <section id="productos" class="section">
+    <h2>Productos Destacados</h2>
+    <div class="product-container">
+      <!-- Producto 1 -->
+      <div class="product-card">
+        <img src="https://i.imgur.com/oHGJE7k.jpg" alt="Deshidratador STT-900X">
+        <div class="product-details">
+          <h3>Deshidratador STT-900X</h3>
+          <ul>
+            <li>9 bandejas extraíbles de acero inoxidable</li>
+            <li>Pantalla LED táctil con sensor</li>
+            <li>7 programas automáticos preconfigurados</li>
+            <li>Ventilación 360° para secado uniforme</li>
+            <li>Consumo: 350W</li>
+          </ul>
+          <p class="price">$2,499 MXN</p>
+          <button>Ver detalles</button>
+        </div>
+      </div>
+      <!-- Producto 2 -->
+      <div class="product-card">
+        <img src="https://i.imgur.com/6tN3GSu.jpg" alt="Deshidratador STT-600 Pro">
+        <div class="product-details">
+          <h3>Deshidratador STT-600 Pro</h3>
+          <ul>
+            <li>6 bandejas extraíbles, diseño compacto</li>
+            <li>Control digital de temperatura (35–70°C)</li>
+            <li>Silencioso: < 45 dB</li>
+            <li>Carcasa de acero y vidrio templado</li>
+            <li>Consumo: 250W</li>
+          </ul>
+          <p class="price">$1,899 MXN</p>
+          <button>Ver detalles</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Cómo Funciona -->
+  <section id="como-funciona" class="section">
+    <h2>¿Cómo Funciona?</h2>
+    <div class="how-it-works">
+      <div class="step">
+        <img src="https://i.imgur.com/3aZkSgG.jpg" alt="Paso 1: Preparar">
+        <div>
+          <h4>Paso 1: Preparar</h4>
+          <p>Corta tus frutas, verduras o carnes en láminas delgadas y uniformes para asegurar un secado homogéneo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="https://i.imgur.com/4m8vYZh.jpg" alt="Paso 2: Colocar">
+        <div>
+          <h4>Paso 2: Colocar</h4>
+          <p>Coloca los alimentos en las bandejas. Ajusta la rejilla para permitir una buena circulación de aire entre capas.</p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="https://i.imgur.com/ZN7wTfo.jpg" alt="Paso 3: Ajustar">
+        <div>
+          <h4>Paso 3: Ajustar</h4>
+          <p>Selecciona el programa o ajusta manualmente la temperatura y tiempo. Nuestro sistema 360° garantiza un secado parejo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <img src="https://i.imgur.com/1PFoF38.jpg" alt="Paso 4: Disfrutar">
+        <div>
+          <h4>Paso 4: Disfrutar</h4>
+          <p>En pocas horas tendrás snacks saludables y crujientes. ¡Almacenamiento eficiente para conservar sabor y nutrientes!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Opiniones -->
+  <section id="opiniones" class="section">
+    <h2>Opiniones de Nuestros Clientes</h2>
+    <div class="testimonials">
+      <div class="testimonial-card">
+        <p>“Desde que compré el STT-900X, preparo mis snacks naturales sin problemas. ¡Es súper fácil de usar y los resultados son increíbles!”</p>
+        <span>– Mariana R., Ciudad de México</span>
+      </div>
+      <div class="testimonial-card">
+        <p>“Excelente calidad y diseño. Mis frutas quedan crujientes y deliciosas. Definitivamente el mejor deshidratador que he tenido.”</p>
+        <span>– Luis T., Guadalajara</span>
+      </div>
+      <div class="testimonial-card">
+        <p>“Me encanta lo silencioso que es. Puedo deshidratar durante la noche y ni me entero. ¡Y la app de control remoto es la cereza del pastel!”</p>
+        <span>– Ana P., Monterrey</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Contacto / Pie de Página -->
+  <footer id="contacto">
+    <p>¿Tienes dudas o quieres más información? Escríbenos a:</p>
+    <p><a href="mailto:contacto@shikanokotan.mx">contacto@shikanokotan.mx</a></p>
+    <p>WhatsApp: +52 123 456 7890</p>
+    <p>Síguenos en redes sociales:</p>
+    <p>
+      <a href="#" target="_blank">Instagram</a> |
+      <a href="#" target="_blank">Facebook</a> |
+      <a href="#" target="_blank">TikTok</a>
+    </p>
+    <p>&copy; 2025 Shikanoko Tan Tan. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
